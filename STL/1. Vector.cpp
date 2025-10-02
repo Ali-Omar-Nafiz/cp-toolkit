@@ -87,35 +87,64 @@ int main() {
     // v.pop_back() -> removes last element (O(1))
     // v.erase(it)  -> erases element at iterator it (O(n) worst case, because it shifts elements)
 
-    vector<int> v = {10, 20, 30, 40, 50};
+    vector<int> v3 = {10, 20, 30, 40, 50};
 
     // v.back(): reference to last element
-    cout << "Last element: " << v.back() << "\n"; // prints 50
+    cout << "Last element: " << v3.back() << "\n"; // prints 50
 
     // you can also modify the last element:
-    v.back() = 99; // changes last element to 99
+    v3.back() = 99; // changes last element to 99
     cout << "After modifying last element: ";
-    for (int x : v) cout << x << " "; // 10 20 30 40 99
+    for (int x : v3) cout << x << " "; // 10 20 30 40 99
     cout << "\n";
 
     // v.pop_back(): removes last element
-    v.pop_back(); // removes 99
+    v3.pop_back(); // removes 99
     cout << "After pop_back(): ";
-    for (int x : v) cout << x << " "; // 10 20 30 40
+    for (int x : v3) cout << x << " "; // 10 20 30 40
     cout << "\n";
 
     // v.erase(): remove an element at a given position
     // erase requires an iterator, like v.begin()+index
-    v.erase(v.begin() + 1); // removes the element at index 1 (20)
+    v3.erase(v3.begin() + 1); // removes the element at index 1 (20)
     cout << "After erase index 1: ";
-    for (int x : v) cout << x << " "; // 10 30 40
+    for (int x : v3) cout << x << " "; // 10 30 40
     cout << "\n";
 
     // erase a range:
     // e.g. erase all elements except first
-    v.erase(v.begin() + 1, v.end()); // removes from index 1 to end
+    v3.erase(v3.begin() + 1, v3.end()); // removes from index 1 to end
     cout << "After erase range: ";
-    for (int x : v) cout << x << " "; // 10
+    for (int x : v3) cout << x << " "; // 10
+    cout << "\n";
+
+
+    // ==========================
+    // INSERT TOOLKIT (Examples)
+    // ==========================
+
+    vector<int> myvector(3, 100); // {100,100,100}
+
+    // Insert single element at beginning
+    myvector.insert(myvector.begin(), 200); // {200,100,100,100}
+
+    // Insert two elements of value 300 at beginning
+    myvector.insert(myvector.begin(), 2, 300); // {300,300,200,100,100,100}
+
+    // Insert elements from another vector
+    vector<int> anothervector(2, 400); // {400,400}
+    myvector.insert(myvector.begin() + 2, anothervector.begin(), anothervector.end());
+    // {300,300,400,400,200,100,100,100}
+
+    // Insert elements from array (using vector)
+    vector<int> myarray = {501, 502, 503};
+    myvector.insert(myvector.begin(), myarray.begin(), myarray.end());
+    // {501,502,503,300,300,400,400,200,100,100,100}
+
+    cout << "myvector contains:";
+    for (int value : myvector) {
+        cout << " " << value;
+    }
     cout << "\n";
 
     return 0;
@@ -138,5 +167,3 @@ Difference:
 - pass by value copies the whole vector (O(n)), original unchanged.
 - pass by reference just gives the function a reference (O(1)), original changed.
 */
-
-
