@@ -54,6 +54,9 @@ int main() {
     // Two ways to insert values
     mp["Nafiz"] = "Good";  // like mp[index] = value;
     mp.insert({"Alice", "Excellent"});
+    mp.insert({"Bob", "Average"});
+    mp.insert({"Charlie", "Brilliant"});
+    mp.insert({"David", "Nice"});
 
     // Access value using key (like accessing array index)
     cout << "Nafiz: " << mp["Nafiz"] << "\n";
@@ -62,6 +65,44 @@ int main() {
     // mp.count(key) -> checks if key exists (returns 1 or 0)
     cout << "\nmp.count(\"Nafiz\") = " << mp.count("Nafiz") << "\n";
     cout << "mp.count(\"Unknown\") = " << mp.count("Unknown") << "\n";
+
+    // Iterating through map (sorted by key automatically)
+    cout << "\nAll elements in map (sorted by key):\n";
+    for (auto &x : mp)
+        cout << x.first << " : " << x.second << "\n";
+
+    // ---------------------- lower_bound & upper_bound ----------------------
+    cout << "\n===== lower_bound() and upper_bound() =====\n";
+    /*
+        lower_bound(key)  -> iterator to first element >= key
+        upper_bound(key)  -> iterator to first element > key
+    */
+
+    string key = "Bob";
+    auto it1 = mp.lower_bound(key);
+    auto it2 = mp.upper_bound(key);
+
+    cout << "lower_bound(\"" << key << "\"): ";
+    if (it1 != mp.end()) cout << it1->first << " -> " << it1->second << "\n";
+    else cout << "No element found (end)\n";
+
+    cout << "upper_bound(\"" << key << "\"): ";
+    if (it2 != mp.end()) cout << it2->first << " -> " << it2->second << "\n";
+    else cout << "No element found (end)\n";
+
+    // Try with a non-existing key
+    key = "Bunny";
+    cout << "\nFor key \"" << key << "\":\n";
+    it1 = mp.lower_bound(key);
+    it2 = mp.upper_bound(key);
+
+    cout << "lower_bound(\"" << key << "\"): ";
+    if (it1 != mp.end()) cout << it1->first << " -> " << it1->second << "\n";
+    else cout << "No element found (end)\n";
+
+    cout << "upper_bound(\"" << key << "\"): ";
+    if (it2 != mp.end()) cout << it2->first << " -> " << it2->second << "\n";
+    else cout << "No element found (end)\n";
 
     // mp.clear() -> removes all elements
     mp.clear();
