@@ -167,3 +167,67 @@ Difference:
 - pass by value copies the whole vector (O(n)), original unchanged.
 - pass by reference just gives the function a reference (O(1)), original changed.
 */
+
+/*
+==============================================
+|         STL VECTOR FUNCTION SUMMARY         |
+==============================================
+
+Basic Operations:
+----------------------------------------------------
+push_back(x)           → Amortized O(1)
+pop_back()             → O(1)
+size()                 → O(1)
+empty()                → O(1)
+back() / front()       → O(1)
+clear()                → O(n)
+resize(n)              → O(n)
+assign(...)            → O(n)
+operator[] / at(i)     → O(1)
+
+Iterator Related:
+----------------------------------------------------
+begin(), end()         → O(1)
+rbegin(), rend()       → O(1)
+
+Insertion/Deletion:
+----------------------------------------------------
+insert(pos, val)       → O(n)  (may shift elements)
+insert(pos, count, val)→ O(n)
+insert range           → O(n)
+erase(pos)             → O(n)
+erase(range)           → O(n)
+swap(v2)               → O(1)
+emplace(pos, val)      → O(n) (similar to insert)
+
+Memory Management:
+----------------------------------------------------
+capacity()             → O(1)
+reserve(k)             → O(n) (if reallocation occurs)
+shrink_to_fit()        → O(n)
+
+Algorithms:
+----------------------------------------------------
+sort(v.begin(), v.end())      → O(n log n)
+reverse(v.begin(), v.end())   → O(n)
+find(v.begin(), v.end(), x)   → O(n)
+count(v.begin(), v.end(), x)  → O(n)
+
+Passing Vectors:
+----------------------------------------------------
+By Value (copy)        → O(n)
+By Reference (&)       → O(1)
+
+Multidimensional Vectors:
+----------------------------------------------------
+vector<vector<int>> v2D(r, vector<int>(c, val))  → O(r * c)
+
+==============================================
+Summary:
+- Access: O(1)
+- Insertion/Deletion at end: O(1) amortized
+- Insertion/Deletion in middle: O(n)
+- Search (linear): O(n)
+- Sorting: O(n log n)
+==============================================
+*/

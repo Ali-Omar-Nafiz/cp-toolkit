@@ -118,3 +118,87 @@ int main() {
 
     return 0;
 }
+
+/*
+=====================================================
+|              STL PAIR & MAP TOOLKIT SUMMARY        |
+=====================================================
+
+-------------------------
+PAIR
+-------------------------
+pair<T1, T2> p;                     → Declaration
+p = {first, second};                → Initialization
+p.first, p.second                   → Access
+make_pair(a, b)                     → Create pair
+tie(x, y) = p;                      → Unpack values
+compare (==, <, >, etc.)            → Lexicographical
+sort(vector<pair<T1, T2>>)          → Sorts by .first, then .second
+swap(p1, p2)                        → O(1)
+
+TIME COMPLEXITY:
+- Access (p.first / p.second): O(1)
+- Assignment / Creation: O(1)
+- Comparison: O(1)
+- Sorting vector<pair>: O(n log n)
+
+-------------------------
+MAP (Ordered Map)
+-------------------------
+map<Key, Value> mp;                 → Declaration
+mp[key] = val;                      → Insert / Update (O(log n))
+mp.insert({key, val});              → Insert (O(log n))
+mp.erase(key);                      → Erase key (O(log n))
+mp.clear();                         → Remove all (O(n))
+mp.size();                          → O(1)
+mp.empty();                         → O(1)
+mp.count(key);                      → Check if exists (O(log n))
+mp.find(key);                       → Returns iterator to key (O(log n))
+mp.lower_bound(key);                → ≥ key (O(log n))
+mp.upper_bound(key);                → > key (O(log n))
+mp.begin(), mp.end();               → O(1)
+Iterating over map                  → O(n)
+
+KEY PROPERTIES:
+- Keys are **unique**.
+- Automatically **sorted by key** (ascending order).
+- Implemented as a **balanced BST (red-black tree)**.
+- Accessing non-existent key auto-inserts with **default value**.
+
+DEFAULT VALUES:
+- int → 0
+- string → ""
+- char → '\0'
+- double → 0.0
+
+EXAMPLES:
+-----------------------------------------------------
+map<string,int> mp;
+mp["Alice"] = 10;   // insert
+mp["Bob"] += 5;     // update
+for (auto &x : mp) cout << x.first << " " << x.second;
+-----------------------------------------------------
+
+COMPLEXITY SUMMARY:
+-----------------------------------------------------
+Access (by key):              O(log n)
+Insert / Erase:               O(log n)
+Find / Count / Bound:         O(log n)
+Iteration (entire map):       O(n)
+Clear():                      O(n)
+-----------------------------------------------------
+
+-------------------------
+UNORDERED_MAP (for comparison)
+-------------------------
+unordered_map<Key, Value> um;       → Average O(1), Worst O(n)
+- Keys not sorted (uses hashing)
+- Faster but no order guarantee
+
+=====================================================
+Summary:
+- pair → simple container of two elements.
+- map  → balanced tree key-value store (sorted, unique keys).
+- unordered_map → hash-based key-value store (unsorted, faster average).
+=====================================================
+*/

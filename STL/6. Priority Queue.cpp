@@ -119,3 +119,39 @@ int main() {
 
     return 0;
 }
+
+/* ===================================================================
+   🔸 SUMMARY OF STL PRIORITY_QUEUE TOOLKIT 🔸
+
+   ✅ BASIC USAGE:
+      priority_queue<int> pq;                     // Max-heap
+      pq.push(x); pq.pop(); pq.top(); pq.empty();
+
+   ✅ MIN HEAP:
+      priority_queue<int, vector<int>, greater<int>> pq;
+
+   ✅ PRIORITY QUEUE of PAIR with CUSTOM COMPARATOR:
+      struct cmp {
+          bool operator()(pair<int,int> &a, pair<int,int> &b) {
+              if (a.first == b.first) return a.second < b.second;
+              return a.first > b.first;
+          }
+      };
+      priority_queue<pair<int,int>, vector<pair<int,int>>, cmp> pq;
+
+   ✅ CUSTOM SORT on VECTOR of PAIR:
+      bool cmp(pair<int,int>&a, pair<int,int>&b) {
+          if (a.first == b.first) return a.second > b.second;
+          return a.first < b.first;
+      }
+      sort(vec.begin(), vec.end(), cmp);
+
+   ⚙️ COMPLEXITY:
+      push() / pop() → O(log n)
+      top() / empty() → O(1)
+      Traversing all elements → O(n log n)
+
+   🔹 Max-Heap = Highest element first
+   🔹 Min-Heap = Lowest element first
+   🔹 Custom Comparator = Full control over sorting rule
+=================================================================== */
