@@ -70,3 +70,33 @@ int main() {
 
     return 0;
 }
+
+/* ===================================================================
+   🔸 SUMMARY OF BITWISE OPERATORS TOOLKIT 🔸
+
+   ✅ BASIC BITWISE OPERATORS:
+      &  → AND       → 1 if both bits are 1
+      |  → OR        → 1 if at least one bit is 1
+      ^  → XOR       → 1 if bits are different
+      ~  → NOT       → Inverts all bits (2’s complement for signed)
+
+   ✅ SHIFT OPERATORS:
+      a << k  → a * 2^k   (Left shift = multiply by 2^k)
+      a >> k  → a / 2^k   (Right shift = divide by 2^k)
+
+   ✅ COMMON USES:
+      - Check even/odd:      (n & 1)
+      - Get i-th bit:        (n >> i) & 1
+      - Set i-th bit:        n | (1 << i)
+      - Clear i-th bit:      n & ~(1 << i)
+      - Flip i-th bit:       n ^ (1 << i)
+      - Check bit set:       if (n & (1 << i)) …
+
+   ✅ NOTES:
+      - Bit positions are 0-indexed (LSB = bit 0)
+      - Works efficiently for bitmasking, toggling flags, etc.
+      - Common in low-level operations and competitive programming.
+
+   ⚙️ COMPLEXITY:
+      All bitwise operations → O(1)
+=================================================================== */
