@@ -8,7 +8,7 @@ int main() {
     //                      STACK (LIFO)
     // ==============================================================
     cout << "\n===== STACK =====" << endl;
-    stack<int> st; // Syntax: stack<int> st;  --> LIFO (Last In First Out) --> Last inserted element as First out
+    stack<int> st; // Syntax: stack<int> st;  --> LIFO (Last In First Out) --> Last inserted element as First output
 
     st.push(10); // push(x): insert element on back -> O(1)
     st.push(20);
@@ -33,7 +33,7 @@ int main() {
     //                      QUEUE (FIFO)
     // ==============================================================
     cout << "\n===== QUEUE =====" << endl;
-    queue<int> q; // Syntax: queue<int> q;  --> FIFO (First In First Out) --> First inserted element as First out
+    queue<int> q; // Syntax: queue<int> q;  --> FIFO (First In First Out) --> First inserted element as First output
 
     q.push(1); // push(x): adds element at the back -> O(1)
     q.push(2);
