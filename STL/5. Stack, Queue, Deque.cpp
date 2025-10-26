@@ -10,7 +10,7 @@ int main() {
     cout << "\n===== STACK =====" << endl;
     stack<int> st; // Syntax: stack<int> st;  --> LIFO (Last In First Out) --> Last inserted element as First output
 
-    st.push(10); // push(x): insert element on back -> O(1)
+    st.push(10); // push(x): insert element at the back -> O(1)
     st.push(20);
     st.push(30);
 
