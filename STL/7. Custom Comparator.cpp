@@ -5,7 +5,7 @@ using namespace std;
 
 // Comparator for integers (descending)
 bool cmpIntDesc(int a, int b) {
-    return a > b; // Sort larger first
+    return a > b; // Sort larger first  // if true → a before b  // if false → b before a
 }
 
 // Comparator for strings (by length, then lexicographically)
@@ -159,5 +159,21 @@ int main() {
    • Struct comparator → use in set/multiset/pq
    • Always define 'operator()' as const in structs
    • For quick inline: use lambda [](auto &a, auto &b){...};
+
+
+✅ Comparator function → bool cmp(T a, T b)
+   - return true  → a comes before b
+   - return false → a comes after b
+
+✅ Examples:
+   • int ↓  → bool cmpIntDesc(int a, int b) { return a > b; }
+   • string → by length ↑, then lex ↑
+        bool cmpString(const string &a, const string &b) {
+            return (a.size() == b.size()) ? a < b : a.size() < b.size();
+        }
+   • pair<int,int> → first ↑, second ↓
+        bool cmpPair(const pair<int,int> &a, const pair<int,int> &b) {
+            return (a.first == b.first) ? a.second > b.second : a.first < b.first;
+        }
 
 ------------------------------------------------------------*/
