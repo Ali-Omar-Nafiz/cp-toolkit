@@ -23,12 +23,9 @@ MULTISET:
 */
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    // ----------------------Set--------------------------
 
-    // ====================================================
-    // 1️⃣  DECLARATION AND INSERTION
-    // ====================================================
+    // Declaration
 
     set<int> st;
     /*
@@ -36,64 +33,51 @@ int main() {
        Stores unique, sorted elements (ascending order by default)
     */
 
+    // Initialization
+
     // insert(value) → O(log n)
-    // Return Type: pair<iterator, bool>
     st.insert(5);
     st.insert(1);
     st.insert(3);
     st.insert(5);  // duplicate ignored
     st.insert(2);
 
-    cout << "Set elements (sorted unique): ";
-    for (auto it = st.begin(); it != st.end(); ++it) // (set<int>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
+    for (auto it = st.begin(); it != st.end(); ++it)
+        cout << *it << " ";   // prints 1 2 3 5
 
-    // ====================================================
-    // 2️⃣  ERASE
-    // ====================================================
+    // Iteration
+
+    // begin() → iterator to first element (O(1))
+    // end()   → iterator to one past the last element (O(1))
+    cout << *st.begin() << "\n";   // prints 1
+
+    // prev(st.end()) → iterator to last element (O(1))
+    cout << *prev(st.end()) << "\n";   // prints 5
+
+    // (--st.end()) also gives last element
+    cout << *(--st.end()) << "\n";    // prints 5
+
+    // next(st.begin()) → iterator to 2nd element (O(1))
+    cout << *next(st.begin()) << "\n";   // prints 1
+
+
+    // Erasing
 
     // erase(value) → O(log n)
     // Return Type: size_t (number of elements removed)
     st.erase(3);  
-    cout << "After erase(3): ";
-    for (auto it = st.begin(); it != st.end(); ++it) // (set<int>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
-
-    // ====================================================
-    // 3️⃣  ITERATORS
-    // ====================================================
-
-    // begin() → iterator to first element (O(1))
-    // end()   → iterator to one past the last element (O(1))
-    cout << "First element: " << *st.begin() << "\n";
-
-    // prev(st.end()) → iterator to last element (O(1))
-    cout << "Last element using *prev(st.end()): " << *prev(st.end()) << "\n";
-
-    // (--st.end()) also gives last element
-    cout << "Alternative last element *(--st.end()): " << *(--st.end()) << "\n";
-
-    // next(st.begin()) → iterator to 2nd element (O(1))
-    cout << "Second element using *next(st.begin()): " << *next(st.begin()) << "\n";
-
-    // ====================================================
-    // 4️⃣  ERASE USING ITERATOR
-    // ====================================================
+    for (auto it = st.begin(); it != st.end(); ++it)
+        cout << *it << " ";   // prints 1 2 5
 
     // erase(iterator) → O(log n)
     // Return Type: void
-    auto it1 = st.begin(); // (set<int>::iterator it1)
+    auto it1 = st.begin();
     st.erase(it1);
-    cout << "After erasing first element: ";
-    for (auto it = st.begin(); it != st.end(); ++it) // (set<int>::iterator it)
-        cout << *it << " ";
+    for (auto it = st.begin(); it != st.end(); ++it)
+        cout << *it << " ";  // prints 2 5
     cout << "\n";
 
-    // ====================================================
-    // 5️⃣  FIND & ERASE USING FIND
-    // ====================================================
+    // Find elements
 
     st.insert(7);
     st.insert(8);
@@ -107,26 +91,21 @@ int main() {
     */
 
     int val = 7;
-    auto it2 = st.find(val); // (set<int>::iterator it2)
-    if (it2 != st.end()) {
-        cout << "Found " << val << ", erasing it.\n";
-        st.erase(it2); // erase(iterator) → O(log n)
+    auto it2 = st.find(val); // returns iterator to the 7
+
+    if (it2 != st.end()) {   // means if found
+        st.erase(it2); 
     }
 
-    cout << "After erasing using find(): ";
-    for (auto it = st.begin(); it != st.end(); ++it) // (set<int>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
+    for (auto it = st.begin(); it != st.end(); ++it)
+        cout << *it << " ";   // prints 2 5 8
 
     // What happens if st.find(non-existing element)?
     // → Returns st.end(), safe if checked before use
     int nonexist = 99;
-    auto it3 = st.find(nonexist); // (set<int>::iterator it3)
-    if (it3 == st.end()) cout << "Element " << nonexist << " not found!\n";
+    auto it3 = st.find(nonexist);
+    if (it3 == st.end())  // means if not found
 
-    // ====================================================
-    // 6️⃣  COUNT
-    // ====================================================
 
     /*
        count(value)
@@ -134,19 +113,15 @@ int main() {
        Time Complexity: O(log n)
        Return Type: size_t
     */
-    cout << "st.count(5): " << st.count(5) << " (1 means exists, 0 means not)\n";
+    cout << st.count(5);   // (prints 1 if 5 exists, else 0)
 
-    // ====================================================
-    // 7️⃣  LOWER_BOUND / UPPER_BOUND
-    // ====================================================
+   // LOWER_BOUND / UPPER_BOUND
 
     st.insert(10);
     st.insert(12);
 
-    cout << "\nSet elements now: ";
-    for (auto it = st.begin(); it != st.end(); ++it) // (set<int>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
+    for (auto it = st.begin(); it != st.end(); ++it)
+        cout << *it << " ";   // prints 2 5 8 10 12
 
     /*
        lower_bound(value)
@@ -157,12 +132,11 @@ int main() {
        Return Type: iterator
     */
 
-    cout << "Lower bound of 8: " << *st.lower_bound(8) << "\n";
-    cout << "Upper bound of 8: " << *st.upper_bound(8) << "\n";
+    cout << *st.lower_bound(8) << "\n";
+    cout << *st.upper_bound(8) << "\n";
 
-    // ====================================================
-    // 8️⃣  CUSTOM COMPARATOR
-    // ====================================================
+    
+    // Custom Comparator
 
     /*
        set<int, greater<int>> st;
@@ -174,14 +148,11 @@ int main() {
     gst.insert(5);
     gst.insert(7);
 
-    cout << "\nSet with greater<int> (descending order): ";
     for (auto it = gst.begin(); it != gst.end(); ++it) // (set<int, greater<int>>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
+        cout << *it << " ";   // prints 12 10 8 7 5 2
 
-    // ====================================================
-    // 9️⃣  MULTISET
-    // ====================================================
+
+    //--------------------Multiset---------------------------
 
     multiset<int> mst;
     /*
@@ -197,10 +168,8 @@ int main() {
     mst.insert(3);
     mst.insert(7);
 
-    cout << "\nMultiset elements (duplicates allowed): ";
-    for (auto it = mst.begin(); it != mst.end(); ++it) // (multiset<int>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
+    for (auto it = mst.begin(); it != mst.end(); ++it)
+        cout << *it << " ";   // prints 3 5 5 7
 
     /*
        erase(value)
@@ -209,10 +178,8 @@ int main() {
        Return Type: size_t
     */
     mst.erase(5);
-    cout << "After mst.erase(5): ";
-    for (auto it = mst.begin(); it != mst.end(); ++it) // (multiset<int>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
+    for (auto it = mst.begin(); it != mst.end(); ++it)
+        cout << *it << " ";   // prints 3 7
 
     mst.insert(5);
     mst.insert(5);
@@ -220,16 +187,14 @@ int main() {
 
     /*
        erase(iterator)
-       → Removes ONE occurrence only
+       → Removes ONE occurrence only (probably the first)
        Time Complexity: O(log n)
        Return Type: void
     */
-    auto it4 = mst.find(5); // (multiset<int>::iterator it4)
-    if (it4 != mst.end()) mst.erase(it4);
-    cout << "After mst.erase(mst.find(5)): ";
-    for (auto it = mst.begin(); it != mst.end(); ++it) // (multiset<int>::iterator it)
-        cout << *it << " ";
-    cout << "\n";
+    auto it4 = mst.find(5);
+    if (it4 != mst.end()) mst.erase(it4);   // erase the first 5
+    for (auto it = mst.begin(); it != mst.end(); ++it)
+        cout << *it << " ";    // prints 3 5 6 7
 
     /*
        lower_bound(value), upper_bound(value)
@@ -237,8 +202,8 @@ int main() {
        Time Complexity: O(log n)
        Return Type: iterator
     */
-    cout << "mst.lower_bound(5): " << *mst.lower_bound(5) << "\n";
-    cout << "mst.upper_bound(5): " << *mst.upper_bound(5) << "\n";
+    cout << *mst.lower_bound(5) << "\n";
+    cout << *mst.upper_bound(5) << "\n";
 
     return 0;
 }

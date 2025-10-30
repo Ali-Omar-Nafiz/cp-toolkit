@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// ====================================================================
-// 🔹 CUSTOM COMPARATOR for priority_queue of pair
+// CUSTOM COMPARATOR for priority_queue of pair
 // Sort by first element ASCENDING,
 // if first elements are equal → sort by second element DESCENDING
-// ====================================================================
 struct cmp1 {
     bool operator()(pair<int, int> &a, pair<int, int> &b) {
         if (a.first == b.first)
@@ -14,10 +12,8 @@ struct cmp1 {
     }
 };
 
-// ====================================================================
-// 🔹 CUSTOM COMPARATOR FUNCTION for vector<pair<int,int>>
+// CUSTOM COMPARATOR FUNCTION for vector<pair<int,int>>
 // (same logic as above but used in sort())
-// ====================================================================
 bool cmp2(pair<int, int> &a, pair<int, int> &b) {
     if (a.first == b.first)
         return a.second > b.second; // descending by second
@@ -26,11 +22,8 @@ bool cmp2(pair<int, int> &a, pair<int, int> &b) {
 
 int main() {
 
-    // ================================================================
-    // 🔹 BASIC PRIORITY QUEUE (MAX-HEAP by default)
-    // ================================================================
-    cout << "===== BASIC PRIORITY QUEUE =====\n";
-
+    // BASIC PRIORITY QUEUE (MAX-HEAP by default)
+    
     // Syntax
     priority_queue<int> pq;  // Max-heap by default (largest element at top)
 

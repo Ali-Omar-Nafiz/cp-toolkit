@@ -4,19 +4,16 @@ using namespace std;
 int main() {
     // basic vector usage:
     vector<int> v;
-    while (true) {
-        int x;
-        cin >> x;
-        if (x == 0) break;
-        v.push_back(x);        // push value x to the back of v; amortized O(1)
-    }
+    // initializing
+    int x;
+    cin >> x;
+    v.push_back(x);      // push value x to the back of v; amortized O(1)
 
-    // reverse printing:
-    for (int i = (int)v.size() - 1; i >= 0; i--) {
-        cout << v[i] << " ";
-        // v.size() returns the number of elements (O(1))
-    }
-    cout << "\n";
+    // accessing
+    cout << v[0] << "\n";  // index based access
+
+    // size()
+    cout << v.size() << "\n";   // v.size() returns the number of elements (O(1))
 
     // sorting:
     sort(v.begin(), v.end());
@@ -26,9 +23,11 @@ int main() {
     // vector declaration with size:
     int n = 10; // assume some n
     vector<int> v1(n);          // n elements, all default-initialized to 0
+    // v1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
     vector<int> v2(n, 10);      // n elements, all initialized to 10
+    // v2 = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10}
     v2.push_back(11);           // add 11 to the back; size increases by 1
-    int val = v2[8];            // access element at index 8 (0-based)
+    // v2 = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11}
 
     // range-based for loops:
     vector<int> ara = {5, 6, 7};
@@ -49,6 +48,16 @@ int main() {
     int arr[4][7]; // 4 rows, 7 columns (classic array)
 
     vector<int> vv[5]; // array of 5 vectors<int>, each initially empty
+    /*
+    vv = {
+          {},
+          {},
+          {},
+          {},
+          {}
+         };          
+    */
+
 
     vector<vector<int>> big;   // a vector of vector<int> (empty initially)
     vector<int> tmp = {2, 4, 5};
@@ -90,37 +99,33 @@ int main() {
     vector<int> v3 = {10, 20, 30, 40, 50};
 
     // v.back(): reference to last element
-    cout << "Last element: " << v3.back() << "\n"; // prints 50
+    cout <<  v3.back() << "\n"; // prints 50
 
     // you can also modify the last element:
     v3.back() = 99; // changes last element to 99
-    cout << "After modifying last element: ";
     for (int x : v3) cout << x << " "; // 10 20 30 40 99
     cout << "\n";
 
     // v.pop_back(): removes last element
     v3.pop_back(); // removes 99
-    cout << "After pop_back(): ";
     for (int x : v3) cout << x << " "; // 10 20 30 40
     cout << "\n";
 
-    // v.erase(): remove an element at a given position
+    // v.erase(position): remove an element at a given position
     // erase requires an iterator, like v.begin()+index
     v3.erase(v3.begin() + 1); // removes the element at index 1 (20)
-    cout << "After erase index 1: ";
     for (int x : v3) cout << x << " "; // 10 30 40
     cout << "\n";
 
     // erase a range:
     // e.g. erase all elements except first
     v3.erase(v3.begin() + 1, v3.end()); // removes from index 1 to end
-    cout << "After erase range: ";
     for (int x : v3) cout << x << " "; // 10
     cout << "\n";
 
 
     // ==========================
-    // INSERT TOOLKIT (Examples)
+    // INSERT (Examples)
     // ==========================
 
     vector<int> myvector(3, 100); // {100,100,100}
@@ -141,7 +146,6 @@ int main() {
     myvector.insert(myvector.begin(), myarray.begin(), myarray.end());
     // {501,502,503,300,300,400,400,200,100,100,100}
 
-    cout << "myvector contains:";
     for (int value : myvector) {
         cout << " " << value;
     }

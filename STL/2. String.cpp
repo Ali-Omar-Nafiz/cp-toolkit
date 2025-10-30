@@ -17,8 +17,8 @@ int stringToInt(string s) {
 
 void solve() {
     // ---------------- Vector<char> and string ----------------
-    vector<char> v;       // dynamic character array
-    string str = "hello"; // behaves like vector<char> but with more functions
+    vector<char> v = "hello";       // dynamic character array
+    string str = "hello"; // string behaves like vector<char> but with more functions
 
     // push_back, pop_back, erase
     str.push_back('!');         // hello!
@@ -43,25 +43,34 @@ void solve() {
     string s1 = "13";
     int x1 = 14;
     x1 += atoi(s1.c_str()); // old style
-    cout << "Using atoi: " << x1 << "\n"; // 27
+    cout  << x1 << "\n"; // 27
 
     // ---------------- user-defined atoi (stringToInt) ----------------
     int x2 = 14;
     x2 += stringToInt(s1);
-    cout << "Using stringToInt: " << x2 << "\n"; // 27
+    cout << x2 << "\n"; // 27
 
     // ---------------- Multidimensional string ----------------
-    vector<string> arr1(8);                  // preferred way
     vector<vector<char>> arr2(8, vector<char>(8)); // 2D char array
     string arr3[8];                          // old-style array
+    vector<string> arr1(8);                  // preferred way
 
     // ---------------- next_permutation ----------------
     string perm = "ABCD";
-    cout << "Permutations of ABCD:\n";
+
+    // Sort first to start from the lexicographically smallest order
     sort(perm.begin(), perm.end());
+
+    // next_permutation() rearranges the string to the next lexicographically larger order
+    // It returns false when the string reaches the last permutation (DCBA --> lexicographically largest order)
     do {
-        cout << perm << "\n";
+        cout << perm << "\n";  // Prints current permutation each iteration
     } while (next_permutation(perm.begin(), perm.end()));
+    // Each loop:
+    // ABCD → ABDC → ACBD → ACDB → ADBC → ADCB → BACD → BADC → BCAD → BCDA → BDAC → BDCA →
+    // CABD → CADB → CBAD → CBDA → CDAB → CDBA → DABC → DACB → DBAC → DBCA → DCAB → DCBA
+    // After DCBA, next_permutation returns false → loop ends
+
 }
 
 int main() {
