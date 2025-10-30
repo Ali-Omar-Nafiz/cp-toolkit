@@ -33,26 +33,21 @@ int main() {
     pq.push(20);
 
     // Access top element – O(1)
-    cout << "Top element: " << pq.top() << "\n";
+    cout << pq.top() << "\n";   // prints 30
 
     // Pop top element – O(log n)
     pq.pop();
 
     // Check if empty – O(1)
-    cout << "Is empty? " << (pq.empty() ? "Yes" : "No") << "\n";
+    cout << pq.empty() << "\n";   // retunrs 1 if pq is empty
 
     // Accessing all elements – O(n log n)
-    cout << "All elements (in descending order): ";
     while (!pq.empty()) {
         cout << pq.top() << " ";
         pq.pop();
     }
-    cout << "\n\n";
 
-    // ================================================================
-    // 🔹 MIN HEAP using greater<int>
-    // ================================================================
-    cout << "===== MIN HEAP =====\n";
+    // MIN HEAP using greater<int>
 
     // Syntax: priority_queue<Type, Container, Comparator>
     priority_queue<int, vector<int>, greater<int>> minpq;
@@ -63,20 +58,16 @@ int main() {
     minpq.push(20);
 
     // Access top element (smallest now) – O(1)
-    cout << "Top element: " << minpq.top() << "\n";
+    cout << minpq.top() << "\n";   // will print 10
 
     // Accessing all elements – O(n log n)
-    cout << "All elements (ascending order): ";
     while (!minpq.empty()) {
         cout << minpq.top() << " ";
         minpq.pop();
     }
     cout << "\n\n";
 
-    // ================================================================
-    // 🔹 CUSTOM COMPARATOR with PAIR in PRIORITY QUEUE
-    // ================================================================
-    cout << "===== CUSTOM COMPARATOR on pair (priority_queue) =====\n";
+    //------------CUSTOM COMPARATOR with PAIR in PRIORITY QUEUE---------
 
     // Syntax:
     // priority_queue<pair<int,int>, vector<pair<int,int>>, cmp1> pq2;
@@ -89,24 +80,19 @@ int main() {
     pq2.push({1, 10});
 
     // Accessing elements according to cmp1 – O(n log n)
-    cout << "Pairs ordered (first ASC, if tie -> second DESC):\n";
     while (!pq2.empty()) {
         cout << pq2.top().first << " " << pq2.top().second << "\n";
         pq2.pop();
     }
     cout << "\n";
 
-    // ================================================================
-    // 🔹 CUSTOM COMPARATOR on VECTOR of PAIR (using sort)
-    // ================================================================
-    cout << "===== CUSTOM COMPARATOR on vector<pair<int,int>> =====\n";
+    //---------CUSTOM COMPARATOR on VECTOR of PAIR (using sort)----------
 
     vector<pair<int,int>> vec = {{2,100}, {1,50}, {2,200}, {1,10}};
 
     // Sort using cmp2 – O(n log n)
     sort(vec.begin(), vec.end(), cmp2);
 
-    cout << "Sorted vector (first ASC, if tie -> second DESC):\n";
     for (auto &p : vec)
         cout << p.first << " " << p.second << "\n";
 
