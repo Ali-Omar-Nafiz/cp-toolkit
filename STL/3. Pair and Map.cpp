@@ -47,8 +47,12 @@ int main() {
 
     // ---------------------- MAP ----------------------
     cout << "\n===== MAP =====\n";
+    
     // map: a key-value pair container
-    // Works like an array but can use any type as key
+    // Conceptually, you can think of a map as a collection (like an array) of pairs,
+    // because each element is stored as a pair <key, value>. 
+    // But unlike an array, map is automatically sorted by key and supports fast key-based lookup.
+
     map<string, string> mp;
 
     // Two ways to insert values
