@@ -12,14 +12,6 @@ struct cmp1 {
     }
 };
 
-// CUSTOM COMPARATOR FUNCTION for vector<pair<int,int>>
-// (same logic as above but used in sort())
-bool cmp2(pair<int, int> &a, pair<int, int> &b) {
-    if (a.first == b.first)
-        return a.second > b.second; // descending by second
-    return a.first < b.first;       // ascending by first
-}
-
 int main() {
 
     // BASIC PRIORITY QUEUE (MAX-HEAP by default)
@@ -65,7 +57,6 @@ int main() {
         cout << minpq.top() << " ";
         minpq.pop();
     }
-    cout << "\n\n";
 
     //------------CUSTOM COMPARATOR with PAIR in PRIORITY QUEUE---------
 
@@ -84,17 +75,6 @@ int main() {
         cout << pq2.top().first << " " << pq2.top().second << "\n";
         pq2.pop();
     }
-    cout << "\n";
-
-    //---------CUSTOM COMPARATOR on VECTOR of PAIR (using sort)----------
-
-    vector<pair<int,int>> vec = {{2,100}, {1,50}, {2,200}, {1,10}};
-
-    // Sort using cmp2 – O(n log n)
-    sort(vec.begin(), vec.end(), cmp2);
-
-    for (auto &p : vec)
-        cout << p.first << " " << p.second << "\n";
 
     return 0;
 }
