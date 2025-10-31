@@ -57,25 +57,25 @@ int main() {
     for (int x : si) cout << x << " ";   // prints 9 5 3 1 
 
     // Set with custom string comparator (by length)
-    struct StringCmp {
+    struct setCmp1{
         bool operator()(const string &a, const string &b) const {
             if (a.size() == b.size()) return a < b;
             return a.size() < b.size();
         }
     };
 
-    set<string, StringCmp> ss = {"hi", "apple", "dog", "banana"};
+    set<string, setCmp1> ss = {"hi", "apple", "dog", "banana"};
     for (auto &s : ss) cout << s << " ";   // prints hi dog apple banana 
 
     // Set with pair comparator
-    struct PairCmp {
+    struct setCmp2 {
         bool operator()(const pair<int,int> &a, const pair<int,int> &b) const {
             if (a.first == b.first) return a.second > b.second;
             return a.first < b.first;
         }
     };
     
-    set<pair<int,int>, PairCmp> sp = {{1,5},{2,2},{1,7},{3,1}};
+    set<pair<int,int>, setCmp2> sp = {{1,5},{2,2},{1,7},{3,1}};
     for (auto &p : sp) cout << "(" << p.first << "," << p.second << ") ";
     // prints (1,7) (1,5) (2,2) (3,1)
 
@@ -171,5 +171,11 @@ int main() {
         bool cmpPair(const pair<int,int> &a, const pair<int,int> &b) {
             return (a.first == b.first) ? a.second > b.second : a.first < b.first;
         }
+
+⚙️ Comparator Tip:
+    • Use bool cmp(const T &a, const T &b)
+    • Use '&' for heavy objects (string, pair, vector) to avoid copy.
+    • Use 'const &' so comparator can't modify them.
+    • For small types (int, char) → pass by value is fine.
 
 ------------------------------------------------------------*/
