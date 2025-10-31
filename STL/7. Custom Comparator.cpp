@@ -3,55 +3,58 @@ using namespace std;
 
 /*-------------------- Custom Comparators --------------------*/
 
-// Comparator for integers (descending)
-bool cmpIntDesc(int a, int b) {
-    return a > b; // Sort larger first  // if true → a before b  // if false → b before a
+/* Comparator function → bool cmp(T a, T b)
+   - if return true  → a comes before b
+   - if return false → a comes after b
+*/
+
+// Comparator for integers (descending)   // Sort larger first
+bool cmp1(int a, int b) {
+    return a > b; // true → a before b (descending order)
 }
 
 // Comparator for strings (by length, then lexicographically)
-bool cmpString(const string &a, const string &b) {
-    if (a.size() == b.size()) return a < b;
-    return a.size() < b.size();
+bool cmp2(const string &a, const string &b) {
+    if (a.size() == b.size()) {
+        return a < b;
+    } else {
+        return a.size() < b.size();
+    }
 }
 
 // Comparator for pairs (sort by first ascending, then second descending)
-bool cmpPair(const pair<int, int> &a, const pair<int, int> &b) {
-    if (a.first == b.first) return a.second > b.second;
-    return a.first < b.first;
+bool cmp3(const pair<int, int> &a, const pair<int, int> &b) {
+    if (a.first == b.first) {
+        return a.second > b.second;
+    } else {
+        return a.first < b.first;
+    }
 }
 
 /*-------------------- Main Demonstration --------------------*/
 
 int main() {
     /*------------- VECTOR -------------*/
-    cout << "=== VECTOR ===\n";
 
     vector<int> vi = {5, 1, 3, 9, 2};
-    sort(vi.begin(), vi.end(), cmpIntDesc);
-    cout << "Int Desc: ";
-    for (int x : vi) cout << x << " ";
-    cout << "\n";
+    sort(vi.begin(), vi.end(), cmp1);
+    for (int x : vi) cout << x << " ";   // prints 9 5 3 2 1
 
     vector<string> vs = {"apple", "hi", "banana", "dog"};
-    sort(vs.begin(), vs.end(), cmpString);
-    cout << "String (len+lex): ";
-    for (auto &s : vs) cout << s << " ";
-    cout << "\n";
+    sort(vs.begin(), vs.end(), cmp2);
+    for (auto &s : vs) cout << s << " ";   // prints hi dog apple banana
 
     vector<pair<int,int>> vp = {{1,5}, {2,2}, {1,7}, {3,1}};
-    sort(vp.begin(), vp.end(), cmpPair);
-    cout << "Pair (first asc, second desc): ";
+    sort(vp.begin(), vp.end(), cmp3);
     for (auto &p : vp) cout << "(" << p.first << "," << p.second << ") ";
-    cout << "\n\n";
+    // prints (1,7) (1,5) (2,2) (3,1)
+
 
     /*------------- SET / MULTISET -------------*/
-    cout << "=== SET / MULTISET ===\n";
 
     // Set with descending int order
     set<int, greater<int>> si = {5, 1, 9, 3};
-    cout << "Set Int Desc: ";
-    for (int x : si) cout << x << " ";
-    cout << "\n";
+    for (int x : si) cout << x << " ";   // prints 9 5 3 1 
 
     // Set with custom string comparator (by length)
     struct StringCmp {
@@ -60,10 +63,9 @@ int main() {
             return a.size() < b.size();
         }
     };
+
     set<string, StringCmp> ss = {"hi", "apple", "dog", "banana"};
-    cout << "Set String (len+lex): ";
-    for (auto &s : ss) cout << s << " ";
-    cout << "\n";
+    for (auto &s : ss) cout << s << " ";   // prints hi dog apple banana 
 
     // Set with pair comparator
     struct PairCmp {
@@ -72,62 +74,56 @@ int main() {
             return a.first < b.first;
         }
     };
+    
     set<pair<int,int>, PairCmp> sp = {{1,5},{2,2},{1,7},{3,1}};
-    cout << "Set Pair (first asc, second desc): ";
     for (auto &p : sp) cout << "(" << p.first << "," << p.second << ") ";
-    cout << "\n\n";
+    // prints (1,7) (1,5) (2,2) (3,1)
 
     // Multiset example (descending)
     multiset<int, greater<int>> ms = {5, 3, 5, 2};
-    cout << "Multiset Int Desc: ";
-    for (int x : ms) cout << x << " ";
-    cout << "\n\n";
+    for (int x : ms) cout << x << " ";   // prints 5 5 3 2 
+
 
     /*------------- PRIORITY QUEUE -------------*/
-    cout << "=== PRIORITY QUEUE ===\n";
 
     // Priority Queue with custom int comparator (min-heap)
     priority_queue<int, vector<int>, greater<int>> pqInt;
+
     for (int x : {5, 1, 9, 3}) pqInt.push(x);
-    cout << "PQ Int (Min-heap): ";
     while (!pqInt.empty()) {
-        cout << pqInt.top() << " ";
+        cout << pqInt.top() << " ";   // pritns 1 3 5 9 
         pqInt.pop();
     }
-    cout << "\n";
 
     // Priority Queue with custom string comparator (by length)
-    struct PQStringCmp {
+    struct pqCmp1 {
         bool operator()(const string &a, const string &b) const {
             if (a.size() == b.size()) return a > b; // reverse lex for equal size
             return a.size() > b.size(); // shorter string = higher priority
         }
     };
-    priority_queue<string, vector<string>, PQStringCmp> pqStr;
+
+    priority_queue<string, vector<string>, pqCmp1> pqStr;
     for (auto &s : {"apple", "hi", "banana", "dog"}) pqStr.push(s);
-    cout << "PQ String (len+revlex): ";
     while (!pqStr.empty()) {
-        cout << pqStr.top() << " ";
+        cout << pqStr.top() << " ";   // prints hi dog apple banana 
         pqStr.pop();
     }
-    cout << "\n";
 
     // Priority Queue with pair comparator
-    struct PQPairCmp {
+    struct pqCmp2 {
         bool operator()(const pair<int,int> &a, const pair<int,int> &b) const {
             if (a.first == b.first) return a.second < b.second; // greater second first
             return a.first > b.first; // smaller first first
         }
     };
-    priority_queue<pair<int,int>, vector<pair<int,int>>, PQPairCmp> pqPair;
+    priority_queue<pair<int,int>, vector<pair<int,int>>, pqCmp2> pqPair;
     for (auto &p : vp) pqPair.push(p);
-    cout << "PQ Pair (first asc, second desc): ";
     while (!pqPair.empty()) {
         auto [f, s] = pqPair.top();
-        cout << "(" << f << "," << s << ") ";
+        cout << "(" << f << "," << s << ") ";   // prints (1,7) (1,5) (2,2) (3,1) 
         pqPair.pop();
     }
-    cout << "\n";
 
     return 0;
 }
