@@ -37,7 +37,7 @@ int main() {
     /*------------- VECTOR -------------*/
 
     vector<int> vi = {5, 1, 3, 9, 2};
-    sort(vi.begin(), vi.end(), cmp1);
+    sort(vi.begin(), vi.end(), cmp1);    // sort(v.begin(), v.end(), greater<int>());
     for (int x : vi) cout << x << " ";   // prints 9 5 3 2 1
 
     vector<string> vs = {"apple", "hi", "banana", "dog"};
