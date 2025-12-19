@@ -6,7 +6,11 @@ using ll = long long;
 #define FAST_IO ios::sync_with_stdio(false); cin.tie(nullptr)
 #define int long long
 
-void solve() {}
+void solve() {
+    int n;
+    cin >> n;
+    cout << "HI" << endl;
+}
 
 signed main() {
     FAST_IO;
