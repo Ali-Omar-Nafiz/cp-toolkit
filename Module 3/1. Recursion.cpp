@@ -1,16 +1,16 @@
 /*
-===============================
-RECURSION REVISION TEMPLATE
-===============================
+=================
+RECURSION
+=================
 
 Rules to use recursion properly:
 
-1) Define what the function means.
+1) Define what the function means. What the function gives as output for any input.
    → Example: fact(n) returns n!
 
-2) Trust the function.
-   → Always assume smaller subproblem works correctly.
-     (Example: assume fact(n - 1) correctly returns (n - 1)!)
+2) As a user, Trust the function.
+   → During calling a function, don't bother about how it works. Just belive it works.
+     (Example: Trust that, fact(n - 1) correctly returns (n - 1)!)
 
 3) Define correct base case.
    → Base case stops infinite recursion.
@@ -124,28 +124,12 @@ int fibo(int n) {
     return result;
 }
 
-
-
 /*
-=====================================
-IMPORTANT RECURSION MINDSET
-=====================================
+As a user:
+1. Input
+2. Output
+3. Complexity or resource usage
 
-Every recursive function has 3 parts:
-
-1) Base Case        → Stop condition
-2) Faith / Assumption → Smaller problem works
-3) Self Work        → Combine smaller answer
-
-Pattern:
-
-function(n) {
-    if (base case)
-        return value;
-
-    int smaller = function(smaller_input);  // warning: can't be similar input as upper function
-
-    return self_work_using(smaller);
-}
-
+As an engineer:
+1. Inner procceses
 */
