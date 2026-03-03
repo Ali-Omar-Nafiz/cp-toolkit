@@ -5,8 +5,7 @@ RECURSION
 
 Rules to use recursion properly:
 
-1) Define what the function means. What the function gives as output for any input.
-   → Example: fact(n) returns n!
+1) Define the function.
 
 2) As a user, Trust the function.
    → During calling a function, don't bother about how it works. Just belive it works.
