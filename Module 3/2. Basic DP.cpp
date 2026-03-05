@@ -70,6 +70,8 @@ int knapsack(int pos, int c) {
     return dp[pos][c];
 }
 
+// Time Complexity: TC of the single function * size of DP array
+
 /*
 1. Definition:
    input: pos, c

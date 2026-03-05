@@ -16,7 +16,7 @@ Rules to use recursion properly:
    → Without base case → Stack Overflow.
 
 Restriction:
-1. Directly / inderectly calling it's own function. (Calling with same function)
+1. Directly / inderectly calling it's own function. (Calling with same input)
 2. Base case have to be exists
 */
 
