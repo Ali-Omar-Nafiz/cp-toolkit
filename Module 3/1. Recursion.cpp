@@ -5,7 +5,7 @@ RECURSION
 
 Rules to use recursion properly:
 
-1) Define the function.
+1) Define the function. Get clear understanding about input and output.
 
 2) As a user, Trust the function.
    → During calling a function, don't bother about how it works. Just belive it works.
@@ -14,6 +14,10 @@ Rules to use recursion properly:
 3) Define correct base case.
    → Base case stops infinite recursion.
    → Without base case → Stack Overflow.
+
+Restriction:
+1. Directly / inderectly calling it's own function. (Calling with same function)
+2. Base case have to be exists
 */
 
 
