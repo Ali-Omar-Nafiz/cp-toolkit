@@ -1,6 +1,6 @@
 // ===== Accumulate Toolkit (CP Ready) =====
-// accumulate(start, end, initial_value, operation)
-// default operation = addition
+// accumulate(start, end, initial_value, custom comparator)
+// default comparator = addition
 
 #include <bits/stdc++.h>
 using namespace std;
