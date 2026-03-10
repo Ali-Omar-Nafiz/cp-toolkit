@@ -43,15 +43,33 @@ int inversionCnt(int l, int r, vector < int > &v) {
     return cnt;
 }
 
+int inversionCnt2(int l, int r, vector < int > &v) {
+    if ((r - l + 1) <= 1) {
+        return 0;
+    }
+    int mid = (l + r) / 2;
+    int cnt1 = inversionCnt2(l, mid, v);
+    int cnt2 = inversionCnt2(mid + 1, r, v);
+    int cnt = cnt1 + cnt2;
+    sort(v.begin() + l, v.begin() + mid + 1);
+    for (int i = mid + 1; i <= r; i++) {
+        int idx = upper_bound(v.begin() + l, v.begin() + mid + 1, v[i]) - v.begin();
+        cnt += (mid - idx + 1);
+    }
+    sort(v.begin() + l, v.begin() + r + 1);
+    return cnt;
+}
+
 int main() {
     int n;
     cin >> n;
-    vector < int > v;
+    vector < int > v, tmp;
     for (int i = 0; i < n; i++) {
         int x;
         cin >> x;
         v.push_back(x);
     }
+    tmp = v;
     int ans = 0;
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
@@ -62,6 +80,8 @@ int main() {
     }
     cout << ans << endl;
     ans = inversionCnt(0, n - 1, v);
+    cout << ans << endl;
+    ans = inversionCnt2(0, n - 1, tmp);
     cout << ans << endl;
     return 0;
 }
