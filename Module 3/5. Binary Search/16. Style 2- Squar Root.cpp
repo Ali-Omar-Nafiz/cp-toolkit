@@ -7,7 +7,7 @@ int main() {
     double x;
     cin >> x;
     double l = 0, r = max(1.0, x);
-    for (int i = 1; i < 50; i++) {
+    for (int step = 1; step < 50; step++) {
         double mid = (r + l) / 2.0;
         if (mid * mid < x) {
             l = mid;
