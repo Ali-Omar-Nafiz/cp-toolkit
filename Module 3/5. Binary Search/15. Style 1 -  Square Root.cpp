@@ -1,4 +1,4 @@
-// Square Root using eps
+// Square Root using epsilon
 #include <bits/stdc++.h>
 
 using namespace std;
