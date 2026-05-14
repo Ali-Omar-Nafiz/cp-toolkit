@@ -54,7 +54,8 @@ void even_odd(int x) {
     ODD  → LSB = 1 (e.g., 7 = 111)
     */
     if (x & 1) {
-        cout << x << " is Odd\n";
+        cout << x << " is Odd\n"; 
+        // OUTPUT (if x=7): 7 is Odd
     } else {
         cout << x << " is Even\n";
     }
@@ -69,23 +70,38 @@ void basic_operations() {
     unsigned int b = 3; // 0011
 
     cout << "a : "; print_binary(a);
+    // OUTPUT: a : 00000000000000000000000000000101
+
     cout << "b : "; print_binary(b);
+    // OUTPUT: b : 00000000000000000000000000000011
 
     // AND (&): 1 if both bits are 1, else 0
     cout << "\nAND (a & b)\n";
     print_binary(a & b);
+    // OUTPUT: 
+    // AND (a & b)
+    // 00000000000000000000000000000001
 
     // OR (|): 1 if at least one bit is 1, else 0
     cout << "\nOR (a | b)\n";
     print_binary(a | b);
+    // OUTPUT: 
+    // OR (a | b)
+    // 00000000000000000000000000000111
 
     // XOR (^): 1 if bits are different, 0 if they are the same
     cout << "\nXOR (a ^ b)\n";
     print_binary(a ^ b);
+    // OUTPUT: 
+    // XOR (a ^ b)
+    // 00000000000000000000000000000110
 
     // NOT (~): Flips all bits (0 becomes 1, 1 becomes 0)
     cout << "\nNOT (~a)\n";
     print_binary(~a);
+    // OUTPUT: 
+    // NOT (~a)
+    // 11111111111111111111111111111010
 }
 
 
@@ -98,10 +114,16 @@ void shift_operations() {
     // LEFT SHIFT (<<): Equivalent to a * (2^b)
     cout << "Left shift (5 << 1) -> 10:\n";
     print_binary(a << 1);
+    // OUTPUT: 
+    // Left shift (5 << 1) -> 10:
+    // 00000000000000000000000000001010
 
     // RIGHT SHIFT (>>): Equivalent to a / (2^b)
     cout << "Right shift (5 >> 1) -> 2:\n";
     print_binary(a >> 1);
+    // OUTPUT: 
+    // Right shift (5 >> 1) -> 2:
+    // 00000000000000000000000000000010
 }
 
 
@@ -115,18 +137,32 @@ void powers_of_two() {
     for (int i = 0; i < 10; i++) {
         cout << "2^" << i << " = " << (1 << i) << '\n';
     }
+    /* OUTPUT:
+    2^0 = 1
+    2^1 = 2
+    2^2 = 4
+    2^3 = 8
+    2^4 = 16
+    2^5 = 32
+    2^6 = 64
+    2^7 = 128
+    2^8 = 256
+    2^9 = 512
+    */
 }
 
 
 // -----------------------------------------------------------------------------
 // 6. COUNT NUMBER OF SET BITS (1s)
 // -----------------------------------------------------------------------------
-void count_set_bits(unsigned int x) {
+void count_set_bits(unsigned int x) { // Assume x = 13 for this example
     cout << "Binary : ";
     print_binary(x);
+    // OUTPUT: Binary : 00000000000000000000000000001101
 
     // FAST METHOD: Compiler builtin function (GCC/Clang)
     cout << "Builtin count = " << __builtin_popcount(x) << '\n';
+    // OUTPUT: Builtin count = 3
 
     // MANUAL METHOD: Brian Kernighan’s algorithm or simple bit shifting
     int cnt = 0;
@@ -136,6 +172,7 @@ void count_set_bits(unsigned int x) {
         temp >>= 1;        // Shift right by 1
     }
     cout << "Manual count  = " << cnt << '\n';
+    // OUTPUT: Manual count  = 3
 }
 
 
@@ -144,29 +181,42 @@ void count_set_bits(unsigned int x) {
 // -----------------------------------------------------------------------------
 void bit_modify_demo() {
     unsigned int a = 27; // Binary: 11011
-    int i = 1;           // We will target the 1st bit (0-indexed, so 2nd from right)
+    int i = 1;           // Target 1st bit (0-indexed, so 2nd from right)
 
     cout << "Original (27):\n";
     print_binary(a);
+    // OUTPUT: 
+    // Original (27):
+    // 00000000000000000000000000011011
 
     // TURN ON BIT: Use OR (|)
     a |= (1 << i);
     cout << "\nTurn ON bit 1:\n";
     print_binary(a);
+    // OUTPUT (Bit 1 is already ON, so no change):
+    // Turn ON bit 1:
+    // 00000000000000000000000000011011
 
     // TURN OFF BIT: Use AND with NOT (& ~)
     a &= ~(1 << i);
     cout << "\nTurn OFF bit 1:\n";
     print_binary(a);
+    // OUTPUT (Value changes to 25):
+    // Turn OFF bit 1:
+    // 00000000000000000000000000011001
 
     // TOGGLE BIT: Use XOR (^)
     a ^= (1 << i);
     cout << "\nToggle bit 1:\n";
     print_binary(a);
+    // OUTPUT (Flips back ON, value is 27 again):
+    // Toggle bit 1:
+    // 00000000000000000000000000011011
 
     // CHECK BIT: Use AND (&)
     if (a & (1 << i)) {
         cout << "\nCheck: Bit 1 is ON\n";
+        // OUTPUT: Check: Bit 1 is ON
     } else {
         cout << "\nCheck: Bit 1 is OFF\n";
     }
@@ -186,23 +236,29 @@ void attendance_bitmask() {
     int day1 = 0;
     int day2 = 0;
 
-    // Day 1 students present: 0, 2, 4
+    // Day 1 students present: 0, 2, 4  --> 10101 (Binary) = 21
     day1 |= (1 << 0) | (1 << 2) | (1 << 4);
 
-    // Day 2 students present: 2, 3, 4
+    // Day 2 students present: 2, 3, 4  --> 11100 (Binary) = 28
     day2 |= (1 << 2) | (1 << 3) | (1 << 4);
 
     cout << "Day1: "; print_binary(day1);
+    // OUTPUT: Day1: 00000000000000000000000000010101
+    
     cout << "Day2: "; print_binary(day2);
+    // OUTPUT: Day2: 00000000000000000000000000011100
 
-    // BOTH DAYS -> Bitwise AND
+    // BOTH DAYS -> Bitwise AND (Students 2 and 4)
     cout << "\nPresent both days      = " << __builtin_popcount(day1 & day2);
+    // OUTPUT: Present both days      = 2
 
-    // ONLY ONE DAY -> Bitwise XOR
+    // ONLY ONE DAY -> Bitwise XOR (Students 0 and 3)
     cout << "\nPresent exactly one day = " << __builtin_popcount(day1 ^ day2);
+    // OUTPUT: Present exactly one day = 2
 
-    // AT LEAST ONCE -> Bitwise OR
+    // AT LEAST ONCE -> Bitwise OR (Students 0, 2, 3, 4)
     cout << "\nPresent at least once   = " << __builtin_popcount(day1 | day2) << '\n';
+    // OUTPUT: Present at least once   = 4
 }
 
 
@@ -229,11 +285,21 @@ void team_generation() {
         }
         cout << "}\n";
     }
+    /* OUTPUT (Generates all 64 subsets. Here is a partial sample):
+    { }                  // mask = 0 (000000)
+    { a }                // mask = 1 (000001)
+    { b }                // mask = 2 (000010)
+    { a b }              // mask = 3 (000011)
+    { c }                // mask = 4 (000100)
+    { a c }              // mask = 5 (000101)
+    ...
+    { a b c d e f }      // mask = 63 (111111)
+    */
 }
 
 
 // -----------------------------------------------------------------------------
-// MAIN FUNCTION
+// MAIN FUNCTION (Triggers the above functions)
 // -----------------------------------------------------------------------------
 int main() {
     cout << "==== EVEN / ODD ====\n";

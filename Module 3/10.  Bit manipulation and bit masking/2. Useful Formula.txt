@@ -1,0 +1,30 @@
+/ OR (|) Operations
+A | 0  = A
+A | 1  = 1
+A | A  = A
+A | ~A = 1
+A | B  = B | A                 // commutative
+(A | B) | C = A | (B | C)     // associative
+
+
+// AND (&) Operations
+A & 0  = 0
+A & 1  = A
+A & A  = A
+A & ~A = 0
+A & B  = B & A                 // commutative
+(A & B) & C = A & (B & C)     // associative
+
+
+
+// XOR (^) Operations
+A ^ 0  = A
+A ^ 1  = ~A      // for single bit
+A ^ A  = 0
+A ^ ~A = 1
+
+A ^ B  = B ^ A                 // commutative
+(A ^ B) ^ C = A ^ (B ^ C)     // associative
+
+A ^ B ^ B = A
+A ^ A ^ B = B
