@@ -21,6 +21,7 @@ int main() {
     int a = 10;
     float b = 5.25;
     char c = 'X';
+    __int128_t ans
 
     printf("int: %d, float: %.2f, char: %c\n", a, b, c);
 
