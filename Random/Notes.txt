@@ -1,0 +1,6 @@
+1. If a number is perfect square, then it has odd number of total divisors. (Exception: 2 has even and 1 has odd number of divisors)
+2. k th number which is not a perfect square. This can be done by binary searching the value of n such that n−⌊n−−√⌋=k or n = k + int(sqrtl(k) + 0.5)
+3. if y % x == 0, then x must be one bit samller than y.
+4. To handle precision loos use sqrtl() instade of sqrt()
+5. To handle Integer Overflow use LLONG_MAX, LLONG_MIN instade of INT_MIN, INT_MAX
+6. If a % k == x, then a % 2k == x or x + k;
