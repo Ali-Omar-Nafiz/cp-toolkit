@@ -16,7 +16,8 @@ int main() {
             is_prime[j] = true;
         }
     }
-    for (int i = 1; i <= 100; i++) {
+    cout << 2 << " ";
+    for (int i = 3; i <= n; i += 2) {
         if (!is_prime[i]) {
             cout << i << " ";
         }
