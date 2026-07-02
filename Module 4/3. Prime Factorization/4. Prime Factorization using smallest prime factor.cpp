@@ -23,7 +23,9 @@ void sieve() {
         if (!isNP[i]) {
             for (int j = i * i; j <= 100000000; j += (2 * i)) {
                 isNP[j] = 1;
-                spf[j] = i;
+                if (spf[j] == j) {
+                    spf[j] = i;
+                }
             }
         }
     }
