@@ -5,7 +5,7 @@ using namespace std;
 
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(nullptr)
 #define endl '\n'
-#define int long long
+#define int unsigned long long            // important to keep unsigned
 
 int phi(int n) {
     int result = n;
@@ -14,11 +14,11 @@ int phi(int n) {
             while (n % i == 0) {
                 n /= i;
             }
-            result = result * (i - 1) / i;  
+            result -= (result / i);  
         } // sqrt(n)..can be optimized using more optimized prime factorization
     }
     if (n > 1) {
-        result = result * (n - 1) / n;
+        result -= (result / n); 
     }
     return result;
 }

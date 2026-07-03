@@ -5,7 +5,7 @@ using namespace std;
 
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(nullptr)
 #define endl '\n'
-#define int long long
+#define int unsigned long long            // important to keep unsigned
 
 int phi(int n) {
     int result = n;
@@ -14,11 +14,17 @@ int phi(int n) {
             while (n % i == 0) {
                 n /= i;
             }
-            result = result * (i - 1) / i;  
-        } // sqrt(n)..can be optimized using more optimized prime factorization
+            /*
+            result = result * (i - 1) / i;
+         => result = result (1 - 1/i))
+         => result = result - (result / i)
+            */
+            result -= (result / i);
+
+        }                                // TC:  sqrt(n)..can be optimized using more optimized prime factorization
     }
     if (n > 1) {
-        result = result * (n - 1) / n;
+        result -= (result / n);
     }
     return result;
 }
@@ -50,7 +56,5 @@ phi(N) = phi(p1^x * p2^y) = phi(p1^x) * phi(p2^y) = p1^x * ((p1 - 1) / p1) * p2^
 
 Final Formula:
 phi(N) = N * ((p1 - 1) / p1) * ((p2 - 1) / p2) * ...  // For all numbers
-
-Corner case:
-phi(1) = 1 if range is [1, 1], else phi(1) = 0;
+phi(1) = 1
 */

@@ -17,7 +17,7 @@ void phi_1toN() {
         // isPrime(i) ?
         if (phiVal[i] == i) {   // untouched phival[i], means this is prime
             for (int j = i; j <= 1000000; j += i) {
-                phiVal[j] = phiVal[j] * (i - 1) / i;
+                phiVal[j] -= (phiVal[j] / i);
             }
         }
     }
