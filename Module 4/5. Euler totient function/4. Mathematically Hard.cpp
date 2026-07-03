@@ -5,7 +5,7 @@ using namespace std;
 
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(nullptr)
 #define endl '\n'
-#define int unsigned long long
+#define int unsigned long long           // important
 
 vector < int > phies(5000001);
 

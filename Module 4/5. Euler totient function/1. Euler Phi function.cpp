@@ -15,8 +15,8 @@ int phi(int n) {
                 n /= i;
             }
             /*
-            result = result * (i - 1) / i;
-         => result = result (1 - 1/i))
+            result = result * ((i - 1) / i);
+         => result = result (1 - (1 / i))
          => result = result - (result / i)
             */
             result -= (result / i);
