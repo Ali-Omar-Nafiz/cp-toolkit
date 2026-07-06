@@ -19,7 +19,7 @@ int phi(int n) {
          => result = result (1 - (1 / i))
          => result = result - (result / i)
             */
-            result -= (result / i);
+            result -= (result / i);   // or, result = result * (i - 1) / i;
 
         }                                // TC:  sqrt(n)..can be optimized using more optimized prime factorization
     }
