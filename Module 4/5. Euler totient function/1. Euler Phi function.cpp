@@ -47,7 +47,7 @@ signed main() {
 }
 // https://cp-algorithms.com/algebra/phi-function.html
 /*
-phi(n) = count of number of x's in range [1, n) such that gcd(n, x) = 1. Means n and x are relative prime or coprime
+phi(n) = count of number of x's in range [1, n] such that gcd(n, x) = 1. Means n and x are relative prime or coprime
 
 phi(p) = p - 1;   // for prime number
 phi(p ^ y) = p^y - (p^y / p) = p^y * (1 - (1 / p)) = p^y * ((p - 1) / p)    // for single prime factor containg number
