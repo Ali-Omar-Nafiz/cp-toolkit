@@ -2,8 +2,8 @@
 using namespace std;
 
 int n, m;
-vector<int> adj[1000];
-int sz[1000];
+vector < vector < int > > adj;
+vector < int > sz;
 
 void dfs(int cur, int p) {
     sz[cur] = 1;
@@ -18,7 +18,8 @@ void dfs(int cur, int p) {
 
 int main() {
     cin >> n >> m;
-
+    adj.assign(n + 1, {});
+    sz.assign(n + 1, 0);
     for (int i = 0; i < m; i++) {
         int u, v;
         cin >> u >> v;

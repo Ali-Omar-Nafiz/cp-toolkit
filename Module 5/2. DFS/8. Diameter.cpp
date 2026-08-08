@@ -1,10 +1,10 @@
-// Diameter : tree / graph er jekono duita node er max distance
+// Diameter = maximum shortest-path distance between any two vertices. (Guaranteed for trees. For a general graph, especially a cyclic graph, this DFS approach is not generally valid.)
 #include <bits/stdc++.h>
 using namespace std;
 
 int n, m;
-vector<int> adj[1000];
-int dist[1000];
+vector < vector < int > > adj;
+vector < int > dist;
 
 void dfs(int cur, int parent) {
     for (auto it : adj[cur]) {
@@ -17,7 +17,8 @@ void dfs(int cur, int parent) {
 
 int main() {
     cin >> n >> m;
-
+    adj.assign(n + 1, {});
+    dist.assign(n + 1, 0);
     for (int i = 0; i < m; i++) {
         int u, v;
         cin >> u >> v;
