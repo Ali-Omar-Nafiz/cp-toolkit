@@ -9,7 +9,7 @@ using namespace std;
 vector<int> wt, val;
 vector<vector<int>> dp;
 
-// Returns maximum value using first n items with capacity w
+// Returns maximum value using first n items with total weight <= w
 int fun(int n, int w) {
     // No items left
     if (n == 0) {
