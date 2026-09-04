@@ -1,4 +1,5 @@
-//https://atcoder.jp/contests/dp/tasks/dp_d
+// https://atcoder.jp/contests/dp/tasks/dp_d
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,8 +10,14 @@ using namespace std;
 vector<int> wt, val;
 vector<vector<int>> dp;
 
-// Returns maximum value using first n items with total weight <= w
+// Maximum value using first n items with weight limit w
 int fun(int n, int w) {
+
+    // Invalid weight
+    if (w < 0) {
+        return INT_MIN;
+    }
+
     // No items left
     if (n == 0) {
         return 0;
@@ -21,17 +28,15 @@ int fun(int n, int w) {
         return dp[n][w];
     }
 
-    int tk = 0, nTk = 0;
+    int tk, nTk;
 
-    // Take item n if it fits
-    if (wt[n] <= w) {
-        tk = fun(n - 1, w - wt[n]) + val[n];
-    }
+    // Take item n
+    tk = fun(n - 1, w - wt[n]) + val[n];
 
     // Don't take item n
     nTk = fun(n - 1, w);
 
-    // Choose the better option
+    // Take the better choice
     dp[n][w] = max(tk, nTk);
 
     return dp[n][w];
@@ -41,6 +46,7 @@ void solve() {
     int n, w;
     cin >> n >> w;
 
+    // Store item weights and values
     wt.assign(n + 1, 0);
     val.assign(n + 1, 0);
 
@@ -48,7 +54,7 @@ void solve() {
         cin >> wt[i] >> val[i];
     }
 
-    // -1 means the state has not been calculated yet
+    // -1 means not calculated yet
     dp.assign(n + 1, vector<int>(w + 1, -1));
 
     cout << fun(n, w) << endl;
@@ -60,8 +66,7 @@ signed main() {
     int t = 1;
     // cin >> t;
 
-    for (int i = 1; i <= t; i++) {
-        // cout << "Case " << i << ": \n";
+    while (t--) {
         solve();
     }
 
