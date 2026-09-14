@@ -21,6 +21,7 @@ void solve() {
     vector<vector<int>> dp(n + 1, vector<int>(w + 1, -1));
 
     // Base case: first item
+    dp[0][0] = 0;
     dp[1][0] = 0;
     dp[1][wt[1]] = val[1];
 
@@ -55,18 +56,13 @@ void solve() {
     // Reconstruct selected items
     vector<int> selected;
 
-    for (int i = n - 1; i >= 1; i--) {
+    for (int i = n - 1; i >= 0; i--) {
 
         // Item i+1 was selected
         if (dp[i][idx] != dp[i + 1][idx]) {
             selected.push_back(i + 1);
             idx -= wt[i + 1];
         }
-    }
-
-    // Check if item 1 was selected
-    if (idx != 0) {
-        selected.push_back(1);
     }
 
     for (auto x : selected) {
