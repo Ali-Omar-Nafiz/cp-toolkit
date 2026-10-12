@@ -1,6 +1,6 @@
 vector<int> v = {5, 1, 3, 9, 2};
 
-sort(v.begin(), v.end(), [](int a, int b) {
+sort(v.begin(), v.end(), [&](int a, int b) {
     return a > b;
 });
 

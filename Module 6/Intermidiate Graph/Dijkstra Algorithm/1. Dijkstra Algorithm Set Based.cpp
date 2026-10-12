@@ -11,9 +11,9 @@ void solve() {
     int n, m;
     cin >> n >> m;
 
-    // Build undirected weighted graph
-    vector < vector < pair < int, int > > > adj(n + 1);
+    vector<vector<pair<int, int>>> adj(n + 1);
 
+    // Build undirected graph
     for (int i = 0; i < m; i++) {
         int a, b, w;
         cin >> a >> b >> w;
@@ -24,64 +24,56 @@ void solve() {
 
     int src = 1;
 
-    // dist = shortest distance, parent = previous node in path
-    vector < int > dist(n + 1, 1e12), parent(n + 1, -1);
+    // dist = shortest distance, parent = path reconstruction
+    vector<int> dist(n + 1, LLONG_MAX), parent(n + 1, -1);
 
     dist[src] = 0;
 
-    // Stores {distance, node}
-    set < pair < int, int > > inLine;
-
-    // Initially, all nodes are in the set
-    for (int i = 1; i <= n; i++) {
-        inLine.insert({dist[i], i});
-    }
+    // {distance, node}
+    set<pair<int, int>> inLine;
+    inLine.insert({0, src});
 
     // Dijkstra
     while (!inLine.empty()) {
-        // Take node with minimum distance
         auto [d, u] = *inLine.begin();
         inLine.erase(inLine.begin());
 
-        // Relax all adjacent edges
-        for (auto [w, v]: adj[u]) {
-            if (dist[v] > d + w) {
-
-                // Remove old distance
+        for (auto [w, v] : adj[u]) {
+            // Relax edge
+            if (dist[v] > dist[u] + w) {
                 inLine.erase({dist[v], v});
 
-                // Update shortest distance
-                dist[v] = d + w;
+                dist[v] = dist[u] + w;
                 inLine.insert({dist[v], v});
 
-                // Store path information
+                // Store previous node
                 parent[v] = u;
             }
         }
     }
 
-    // No path from 1 to n
-    if (dist[n] == 1e12) {
+    // Destination is unreachable
+    if (dist[n] == LLONG_MAX) {
         cout << -1 << endl;
         return;
     }
 
-    // Reconstruct path from n back to 1
+    // Reconstruct path from n to 1
     int cur = n;
-    vector < int > path;
+    vector<int> path;
 
     while (cur != -1) {
         path.push_back(cur);
         cur = parent[cur];
     }
 
-    // Reverse to get path from 1 to n
+    // Reverse to get 1 -> n
     reverse(path.begin(), path.end());
 
-    for (auto x: path) {
+    // Print shortest path
+    for (auto x : path) {
         cout << x << " ";
     }
-
     cout << endl;
 }
 
