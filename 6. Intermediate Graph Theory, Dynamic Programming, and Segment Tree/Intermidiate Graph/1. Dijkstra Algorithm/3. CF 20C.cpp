@@ -43,7 +43,7 @@ void solve() {
             if (dist[v] > dist[u] + w) {
                 inLine.erase({dist[v], v});
 
-                dist[v] = dist[u] + w;
+                dist[v] = d + w;
                 inLine.insert({dist[v], v});
 
                 // Store previous node

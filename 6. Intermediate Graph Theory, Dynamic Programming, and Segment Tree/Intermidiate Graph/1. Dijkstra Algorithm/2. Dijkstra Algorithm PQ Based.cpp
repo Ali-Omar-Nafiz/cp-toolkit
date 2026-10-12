@@ -1,4 +1,3 @@
-// Problem: https://codeforces.com/contest/20/problem/C
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -29,22 +28,25 @@ void solve() {
 
     dist[src] = 0;
 
-    // {distance, node}
-    set<pair<int, int>> inLine;
-    inLine.insert({0, src});
+    // {distance, node} - min heap
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> inLine;
+    inLine.push({0, src});
 
     // Dijkstra
     while (!inLine.empty()) {
-        auto [d, u] = *inLine.begin();
-        inLine.erase(inLine.begin());
+        auto [d, u] = inLine.top();
+        inLine.pop();
+
+        // Ignore outdated entry
+        if (d > dist[u]) {
+            continue;
+        }
 
         for (auto [w, v] : adj[u]) {
             // Relax edge
             if (dist[v] > dist[u] + w) {
-                inLine.erase({dist[v], v});
-
-                dist[v] = dist[u] + w;
-                inLine.insert({dist[v], v});
+                dist[v] = d + w;
+                inLine.push({dist[v], v});
 
                 // Store previous node
                 parent[v] = u;
