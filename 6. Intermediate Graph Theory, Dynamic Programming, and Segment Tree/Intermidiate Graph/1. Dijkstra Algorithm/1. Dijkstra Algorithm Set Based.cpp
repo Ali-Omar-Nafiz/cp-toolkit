@@ -35,12 +35,12 @@ void solve() {
 
     // Dijkstra
     while (!inLine.empty()) {
-        auto [d, u] = *inLine.begin();
+        auto [d, u] = *inLine.begin();  // this d is the minimum distance from src to u, that will never change
         inLine.erase(inLine.begin());
 
         for (auto [w, v] : adj[u]) {
             // Relax edge
-            if (dist[v] > dist[u] + w) {
+            if (dist[v] > d + w) {
                 inLine.erase({dist[v], v});
 
                 dist[v] = d + w;

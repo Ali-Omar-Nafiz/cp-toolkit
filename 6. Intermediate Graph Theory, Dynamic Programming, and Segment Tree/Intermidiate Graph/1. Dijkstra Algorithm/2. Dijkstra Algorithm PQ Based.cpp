@@ -34,7 +34,7 @@ void solve() {
 
     // Dijkstra
     while (!inLine.empty()) {
-        auto [d, u] = inLine.top();
+        auto [d, u] = inLine.top();  // this d is the minimum distance from src to u, that will never change
         inLine.pop();
 
         // Ignore outdated entry
@@ -44,7 +44,7 @@ void solve() {
 
         for (auto [w, v] : adj[u]) {
             // Relax edge
-            if (dist[v] > dist[u] + w) {
+            if (dist[v] > d + w) {
                 dist[v] = d + w;
                 inLine.push({dist[v], v});
 

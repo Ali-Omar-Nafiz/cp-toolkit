@@ -40,7 +40,7 @@ void solve() {
 
         for (auto [w, v] : adj[u]) {
             // Relax edge
-            if (dist[v] > dist[u] + w) {
+            if (dist[v] > d + w) {
                 inLine.erase({dist[v], v});
 
                 dist[v] = d + w;

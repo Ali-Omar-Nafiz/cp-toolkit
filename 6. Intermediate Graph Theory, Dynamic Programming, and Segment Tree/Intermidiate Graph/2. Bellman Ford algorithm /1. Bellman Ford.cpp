@@ -15,32 +15,35 @@ int main() {
         int n, m;
         cin >> n >> m;
 
-        vector<tuple<int, int, ll>> edges(m);
+        // Each edge stores {u, v, w}
+        vector<array<ll, 3>> edges(m);
 
-        for (auto &[u, v, w] : edges) {
-            cin >> u >> v >> w;
+        for (auto &e : edges) {
+            cin >> e[0] >> e[1] >> e[2];
         }
 
         vector<ll> dist(n + 1, INF);
         dist[1] = 0;
 
-        // Bellman-Ford: relax all edges up to n times.
+        // Bellman-Ford
         for (int i = 1; i <= n; i++) {
             bool updated = false;
 
-            for (auto [u, v, w] : edges) {
+            for (auto &e : edges) {
+                ll u = e[0];
+                ll v = e[1];
+                ll w = e[2];
+
                 if (dist[u] != INF && dist[u] + w < dist[v]) {
                     dist[v] = dist[u] + w;
                     updated = true;
                 }
             }
 
-            // No updates means shortest distances are finalized.
             if (!updated) break;
 
-            // An update on the nth iteration indicates a reachable negative cycle.
             if (i == n) {
-                // Negative cycle detected.
+                // Reachable negative cycle detected
             }
         }
     }

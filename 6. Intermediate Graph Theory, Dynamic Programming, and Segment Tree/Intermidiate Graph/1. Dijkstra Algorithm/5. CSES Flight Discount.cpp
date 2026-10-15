@@ -27,7 +27,7 @@ void solve() {
         auto [d, u] = *st.begin();
         st.erase(st.begin());
         for (auto [w, v]: adj[u]) {
-            if (dist[u] + w < dist[v]) {
+            if (d + w < dist[v]) {
                 st.erase({dist[v], v});
                 dist[v] = d + w;
                 st.insert({dist[v], v});
