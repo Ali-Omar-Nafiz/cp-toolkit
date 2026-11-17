@@ -30,13 +30,12 @@ void join(int a, int b) {
         return;
     }
 
-    if (sz[pa] >= sz[pb]) {
-        parent[pb] = pa;
-        sz[pa] += sz[pb];
-    } else {
-        parent[pa] = pb;
-        sz[pb] += sz[pa];
+    if (sz[pa] < sz[pb]) {
+        swap(pa, pb);
     }
+
+    parent[pb] = pa;
+    sz[pa] += sz[pb];
 }
 
 void solve() {
@@ -68,4 +67,3 @@ signed main() {
     solve();
     return 0;
 }
-
