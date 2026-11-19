@@ -34,18 +34,17 @@ int main() {
 
     for (int i = 1; i <= n; i++) make(i);        // one set per NODE
 
-    vector<pair<int, pair<int, int>>> edges;     // {weight, {u, v}}
+    vector<array<int, 3>> edges;                 // {weight, u, v}
     for (int i = 0; i < m; i++) {
         int u, v, w;
         cin >> u >> v >> w;
-        edges.push_back({w, {u, v}});
+        edges.push_back({w, u, v});
     }
 
     sort(edges.begin(), edges.end());            // cheapest edges first
 
     long long mst = 0;
-    for (auto [w, e] : edges) {
-        int u = e.first, v = e.second;
+    for (auto [w, u, v] : edges) {
         if (find(u) != find(v)) {                // no cycle, so take this edge
             mst += w;
             join(u, v);
